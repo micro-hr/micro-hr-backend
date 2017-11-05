@@ -1,9 +1,9 @@
-package com.aefox.microhr
+package com.aefox.microhr.board.query
 
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
 
-@SpringBootApplication(scanBasePackages = arrayOf("com.aefox.microhr.board"))
+@SpringBootApplication
 class Application
 
 fun main(args: Array<String>) {
