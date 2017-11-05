@@ -1,0 +1,10 @@
+repositories {
+    maven {
+        url 'https://repo.spring.io/libs-milestone'
+    }
+}
+
+dependencies {
+    compile "org.springframework.boot:spring-boot-starter-web:2.0.0.M5"
+    compile "org.springframework.kafka:spring-kafka:2.0.0.RELEASE"
+}
