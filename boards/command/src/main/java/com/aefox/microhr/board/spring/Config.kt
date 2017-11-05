@@ -13,28 +13,20 @@ import org.springframework.transaction.PlatformTransactionManager
 import javax.sql.DataSource;
 
 @Configuration
-@EnableJpaRepositories(basePackages = arrayOf("com.aefox.microhr.board"), entityManagerFactoryRef = "boardEntityManagerFactory",
-    transactionManagerRef = "boardTransactionManager")
-//@EnableJpaRepositories
-//@EnableJpaRepositories(entityManagerFactoryRef = "entityManagerFactory",
-//    transactionManagerRef = "transactionManager")
+@EnableJpaRepositories("com.aefox.microhr.board")
 class Config {
 
     @Bean
-    fun boardTransactionManager(): PlatformTransactionManager  {
-//    fun transactionManager(): PlatformTransactionManager  {
-        return JpaTransactionManager(boardEntityManagerFactory().getObject())
-    }
+    fun transactionManager(): PlatformTransactionManager = JpaTransactionManager(entityManagerFactory().getObject())
 
     @Bean
-    fun boardEntityManagerFactory(): LocalContainerEntityManagerFactoryBean {
-//    fun entityManagerFactory(): LocalContainerEntityManagerFactoryBean {
+    fun entityManagerFactory(): LocalContainerEntityManagerFactoryBean {
         val vendorAdapter = HibernateJpaVendorAdapter()
         vendorAdapter.setGenerateDdl(true)
 
         val factoryBean = LocalContainerEntityManagerFactoryBean()
 
-        factoryBean.dataSource = boardDataSource()
+        factoryBean.dataSource = dataSource()
         factoryBean.jpaVendorAdapter = vendorAdapter
         factoryBean.setPackagesToScan("com.aefox.microhr.board")
 
@@ -42,11 +34,9 @@ class Config {
     }
 
     @Bean
-    fun boardDataSource(): DataSource {
-//    fun dataSource(): DataSource {
-        return EmbeddedDatabaseBuilder()
+    fun dataSource(): DataSource =
+        EmbeddedDatabaseBuilder()
             .setType(EmbeddedDatabaseType.HSQL)
             .setName("boards")
             .build()
-    }
 }

@@ -24,7 +24,7 @@ class BoardService {
 
     fun getBoard(id: Long): Mono<out Board> = Mono.justOrEmpty(boardRepository.findById(id))
 
-    @Transactional("boardTransactionManager")
+    @Transactional
     fun process(cmd: CreateBoardCommand): Mono<out BoardCreatedEvent> {
         val newBoard: Board = boardRepository.save(Board(boardName = cmd.boardName))
 
@@ -33,7 +33,7 @@ class BoardService {
         return Mono.just(BoardCreatedEvent(newBoard.id, newBoard.boardName))
     }
 
-    @Transactional("boardTransactionManager")
+    @Transactional
     fun process(cmd: UpdateBoardCommand): Mono<out BoardUpdatedEvent> {
         val updatedOrEmpty = boardRepository.findById(cmd.boardId).map { boardToUpdate ->
             val updatedBoard: Board = boardRepository.save(Board(cmd.boardId, cmd.boardName))
@@ -48,7 +48,7 @@ class BoardService {
         return Mono.justOrEmpty(updatedOrEmpty)
     }
 
-    @Transactional("boardTransactionManager")
+    @Transactional
     fun process(cmd: DeleteBoardCommand): Mono<out BoardDeletedEvent> {
         boardRepository.deleteById(cmd.boardId)
 

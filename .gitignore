@@ -13,6 +13,9 @@
 # Idea folder
 .idea
 
+# Gradle
+# .gradle/
+
 # Package Files #
 *.jar
 *.war

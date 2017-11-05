@@ -1,6 +1,13 @@
 group 'com.aefox.microhr'
 version '1.0-SNAPSHOT'
 
+buildscript {
+    ext.kotlinVersion = '1.1.51'
+    ext.springBootVersion = '2.0.0.M5'
+    ext.springDataJpaVersion = '2.1.0.BUILD-SNAPSHOT'
+    ext.springKafkaVersion = '2.0.0.RELEASE'
+}
+
 subprojects {
     apply plugin: 'java'
 
