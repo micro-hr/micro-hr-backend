@@ -2,6 +2,4 @@ rootProject.name = 'com.aefox.microhr.backend'
 
 include ':boards:command',
         ':boards:events',
-        ':boards:query',
-        ':candidates:command',
-        ':candidates:query'
+        ':boards:query'
