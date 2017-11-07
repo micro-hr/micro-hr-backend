@@ -1,0 +1,5 @@
+rootProject.name = 'com.aefox.microhr.backend'
+
+include ':boards:command',
+        ':boards:events',
+        ':boards:query'
